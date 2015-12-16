@@ -1,6 +1,6 @@
 safe: true
 exclude: ['README.md', 'Gemfile', 'Gemfile.lock', 'serve.sh', 'article.png', 'sync.sh', 'LICENSE']
-baseurl: /paper-now
+baseurl: /bacillus-anthracis-panel
 imports:
     - https://refgenomics.github.io/research-article/components/research-article/research-article.html
 theme: https://refgenomics.github.io/paper-themes/paper-now/
