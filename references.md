@@ -1,2 +1,2 @@
-* First Author, Second Author. 2014. [My First Article](https://example.com/articles/1).
-* First Author, Second Author. 2015. [My Second Article](https://example.com/articles/2).
+* Robert A. Petit III, Matthew Ezewudo, Sandeep J. Joseph, Timothy D. Read (2015). [Searching for anthrax in the New York City subway metagenome](https://read-lab-confederation.github.io/nyc-subway-anthrax-study/).
+* W.R. Easterday, M.N. Van Ert, T.S. Simonson, D.M. Wagner, L.J. Kenefic, C.J. Allender, P. Keim (2005). Use of Single Nucleotide Polymorphisms in the plcR Gene for Specific Identification of Bacillus anthracis. J Clin Microbiol 43(4): 1995–1997. doi: [10.1128/JCM.43.4.1995-1997.2005](http://jcm.asm.org/content/43/4/1995).

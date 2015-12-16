@@ -2,20 +2,5 @@
 title: "Introduction"
 order: 2
 ---
-The background to the work.
 
-This paragraph contains one species, a _Hippopotamus amphibius_.
-
-This sentence cites an article in the bibliography ([Author, 2014](https://example.com/articles/1)).
-
-This sentence cites another article ([Author, 2015](https://example.com/articles/2)).
-
-This paragraph has a DOI citation at the end, which supports this statement[👍](https://doi.org/10.1038/nature14388 "Cancer: Antibodies regulate antitumour immunity").
-
-This paragraph [links to an article by DOI](https://doi.org/10.7717/peerj.182 "Ontogeny in the tube-crested dinosaur Parasaurolophus (Hadrosauridae) and heterochrony in hadrosaurids").
-
-This paragraph [links to an article by PMID](http://www.ncbi.nlm.nih.gov/pubmed/25898005).
-
-Equations and formula can be included either inline ($$ 2+2=4 $$) or as display blocks:
-
-<div>\[ \sum_{i=0}^{\infty}\pi_i=\sum_{i=0}^{\infty}\rho^i\pi_0=\frac{\pi_0}{1-\rho}=1 \]</div>
+The specific detection of pathogenic microbes is a useful application of high-throughput genomic sequencing that has generated a significant amount of interest. Rather than focusing on a limited set of biochemical signatures, such as a surface antigen or conserved marker gene, whole-genome analysis offers the potential for highly sensitive and accurate detection that stands up robustly in the face of trace-level input, unculturable target microbes, and genomic sequence divergence. However, existing tools for microbial metagenomics are typically focused on identifying the broadest possible range of organisms, sacrificing computational or biological specificity for taxonomic breadth. We constructed a targeted bioinformatic tool for the detection of *Bacillus anthracis* that takes into account the specific biology of this pathogen, including the virulence plasmids pXO1 and pXO2 and the *plcR* SNP that has been previously identified as being diagnostic of B. anthracis. This analytical module on the [One Codex platform](https://app.onecodex.com) provides applied microbiologists with a straightforward and powerful tool for the detection of *B. anthracis* with very high confidence, and we believe that it also demonstrates a generalizable approach to microbial metagenomics that is both automated and specified clearly for the task at hand.

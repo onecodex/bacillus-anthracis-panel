@@ -3,6 +3,4 @@ title: Abstract
 order: 1
 container: header
 ---
-This is the first paragraph of the abstract.
-
-This is another paragraph of the abstract.
+_Bacillus anthracis_ is a spore-forming pathogen that both occurs naturally in the wild and has been previously used for biological warfare. The detection of _B. anthracis_ in metagenomic datasets is complicated by the biology of the organism, which is closely related to _B. cereus_ and encodes its pathogenicity via two plasmids, pXO1 and pXO2 (which have been observed infrequently in non-_anthracis_ Anthrax-causing _Bacilli_). Given the paramount importance of high-confidence detection for this pathogen, we constructed a targeted genomic detection panel that takes its genomic complexity into account. The _B. anthracis_ detection panel is executed on the One Codex platform, quantifying the proportion of species-specific markers detected on the core chromosome, each virulence plasmid, as well as the presence of a canonical chromosomal SNP. Tested against a collection of dozens of public _Bacillus_ isolates, this panel discriminates perfectly between _B. anthracis_ and other _Bacilli_. Moreover, an _in silico_ limit of detection study demonstrates this high-confidence detection at as low as 0.01X sequencing depth. This targeted gene panel provides a robust tool for the high-confidence of _B. anthracis_ in metagenomic samples, while also demonstrating how the One Codex platform integrates orthogonal bioinformatic methods in order to provide a comprehensive understanding of complex microbial samples.
