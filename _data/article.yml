@@ -17,9 +17,13 @@ authors:
     id: "nick-greenfield"
     name: "Nick Greenfield"
 
-  - &other-author
-    id: "other-author"
-    name: "Other authors(s)"
+  - &christopher-mason
+    id: "christopher-mason"
+    name: "Christopher Mason"
+
+  - &ebrahim-afshinnekoo
+    id: "ebrahim-afshinnekoo"
+    name: "Ebrahim Afshinnekoo"
 
 affiliations:
   - name: "Reference Genomics, Inc."
@@ -29,6 +33,16 @@ affiliations:
     members:
       - *samuel-minot
       - *nick-greenfield
+  - name: "Weill Cornell Medical College"
+    department: "Department of Physiology and Biophysics"
+    location: "New York, New York, USA"
+    members:
+      - *christopher-mason
+  - name: "Weill Cornell Medical College"
+    department: "The HRH Prince Alwaleed Bin Talal Bin Abdulaziz Alsaud Institute for Computational Biomedicine"
+    location: "New York, New York, USA"
+    members:
+      - *ebrahim-afshinnekoo
 
 
 contributions:
@@ -36,7 +50,9 @@ contributions:
     url: http://dictionary.casrai.org/Contributor_Roles/Methodology
     contributors:
       - *samuel-minot
+      - *christopher-mason
       - *nick-greenfield
+      - *ebrahim-afshinnekoo
 
   - name: "Software"
     url: http://dictionary.casrai.org/Contributor_Roles/Software
@@ -44,13 +60,10 @@ contributions:
       - *samuel-minot
       - *nick-greenfield
 
-  - name: "Writing - original draft"
-    url: http://dictionary.casrai.org/Contributor_Roles/Writing_%E2%80%93_original_draft
-    contributors:
-      - *samuel-minot
-
-  - name: "Writing - review & editing"
+  - name: "Writing"
     url: http://dictionary.casrai.org/Contributor_Roles/Writing_%E2%80%93_review_%26_editing
     contributors:
       - *samuel-minot
+      - *christopher-mason
       - *nick-greenfield
+      - *ebrahim-afshinnekoo
