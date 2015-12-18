@@ -9,13 +9,13 @@ A "Marker Panel” on the [One Codex platform](https://app.onecodex.com) consist
 
 The *B. anthracis* marker panel was assembled to detect the presence of *B. anthracis* using four specific types of probes:
 
-1.  A single SNP was identified by [Easterday, et al., (2005)](http://jcm.asm.org/content/43/4/1995) as being ubiquitous and specific to *B. anthracis*. A 31bp marker spanning that SNP was used as a target sequence and is displayed in the top panel of [Figure 1](#figure-1).
+1.  **plcR SNP**: A single SNP was identified by [Easterday, et al., (2005)](http://jcm.asm.org/content/43/4/1995) as being ubiquitous and specific to *B. anthracis*. A 31bp marker spanning that SNP was used as a target sequence and is displayed in the top panel of [Figure 1](#figure-1).
 
-2.  The complete set of 50bp sequences from the pXO1 and pXO2 plasmids were compared against the One Codex Database (containing roughly 40,000 complete microbial genomes), and all non-overlapping markers specific to *B. anthracis* were used as plasmid-specific target sequences (pXO1 – n=115; pXO2 – n=112), displayed in the second and third panels in [Figure 1](#figure-1).
+2.  **Virulence plasmid markers**: The complete set of 50bp sequences from the pXO1 and pXO2 plasmids were compared against the One Codex Database (containing roughly 40,000 complete microbial genomes), and all non-overlapping markers specific to *B. anthracis* were used as plasmid-specific target sequences (pXO1 – _n=115_; pXO2 – _n=112_), displayed in the second and third panels in [Figure 1](#figure-1).
 
-3.  A set of 31bp k-mers were identified by [Petit, et al., (2015)](https://read-lab-confederation.github.io/nyc-subway-anthrax-study/)  as being specific to the main chromosome of *B. anthracis*, and not shared by any other _Bacillus_ species. A non-overlapping set of 1,605 of these target sequences was used for the “Core Genome” panel shown in the fourth panel of [Figure 1](#figure-1).
+3.  **Core genome SNPs**: A set of 31bp k-mers were identified by [Petit, et al., (2015)](https://read-lab-confederation.github.io/nyc-subway-anthrax-study/)  as being specific to the main chromosome of *B. anthracis*, and not shared by any other _Bacillus_ species. A non-overlapping set of 1,605 of these target sequences was used for the “Core Genome” panel shown in the fourth panel of [Figure 1](#figure-1).
 
-4. A final panel presents select highly conserved markers present across _Bacillus_ species. These markers **do not** indicate the presence of _B. anthracis_, but rather serve to estimate the relative depth of sequencing across all _Bacillus_ present in a sample. The resulting coverage statistics can also be used to distinguish between the genuine but low-level presence of _B. anthracis_ and sequencing error in a deeply sequenced sample.
+4. **"Near neighbor control markers"**: A final panel presents select highly conserved markers present across _Bacillus_ species. These markers _**do not**_ indicate the presence of _B. anthracis_, but rather serve to estimate the relative depth of sequencing across all _Bacillus_ present in a sample. The resulting coverage statistics can also be used to distinguish between the genuine but low-level presence of _B. anthracis_ and sequencing error in a deeply sequenced sample.
 
 
 ### *B. anthracis* Marker Panel on One Codex
