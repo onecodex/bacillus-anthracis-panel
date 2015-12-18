@@ -2,8 +2,8 @@
 layout: figure
 order: 2
 label: Table 1
-title: "Species analyzed"
-description: "Number of samples analyzed, grouped by species."
+title: "Number of samples analyzed, grouped by species"
+description: ""
 source: ../data/species.counts.tsv
 ---
 <table class="table table-bordered">

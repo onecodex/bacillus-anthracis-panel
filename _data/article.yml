@@ -1,10 +1,10 @@
 # Note: to avoid repeating the same data multiple times,
 # identifiers (starting with "&") are referenced later (starting with "*")
 
-title: "Detection of Bacillus anthracis using a targeted gene panel"
-date: 2015-12-15T12:00:00Z
+title: "Detection of _Bacillus anthracis_ using a targeted gene panel"
+date: 2015-12-17T12:00:00Z
 doi: # e.g. 10.1234/example.1
-github: # e.g. user-name/paper-now
+github: refgenomics/bacillus-anthracis-panel # e.g. user-name/paper-now
 
 authors:
   - &samuel-minot
