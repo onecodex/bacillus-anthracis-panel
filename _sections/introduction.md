@@ -17,7 +17,7 @@ The resulting "marker panel" on the [One Codex platform](https://www.onecodex.co
 <div class="text-center">
     <div class="hidden-xs" id="fig_el962274525314384858089708"></div>
     <div class="visible-xs"><img src="data/figures/figure1_for_mobile.png" width="320px"><br><br></div>
-    <div><a href="#figure-1"><b>Figure 1</b></a>: Detection of <em>B. anthracis</em> across 102 <em>Bacillus</em> isolates and metagenomic samples. Red points are <em>Bacillus anthracis</em>, blue points are other <em>Bacillus</em> species, purple points are synthetic metagenomic samples with <em>B. anthracis</em> spike-ins (0.1X - 2X), and orange points are samples from the <a href="//www.pathomap.org">PathoMAP project</a>. <span class="hidden-xs">Click on any point to view the underlying analysis on <a href="https://www.onecodex.com">One Codex</a>.</span></div>
+    <div><a href="#figure-1"><b>Figure 1</b></a>: Detection of <em>B. anthracis</em> across 102 <em>Bacillus</em> isolates and metagenomic samples. Red points are <em>Bacillus anthracis</em>, blue points are other <em>Bacillus</em> species, purple points are synthetic metagenomic samples with <em>B. anthracis</em> spike-ins (0.1X &ndash; 2.0X), and orange points are samples from the <a href="//www.pathomap.org">PathoMAP project</a>. For display, values of 0 were rounded up to <script type="math/tex" id="MathJax-Element-manual-1"> 10^{-04}\ (log_{10} = -4) </script>. <span class="hidden-xs">Click on any point to view the underlying analysis on <a href="https://www.onecodex.com">One Codex</a>.</span></div>
 </div>
 
 <script type="text/javascript">
