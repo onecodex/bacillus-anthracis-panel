@@ -5,7 +5,7 @@ order: 3
 
 ### Marker Panel Construction
 
-A "Marker Panel” on the [One Codex platform](https://app.onecodex.com) consists of a set of target sequences that are compared against an input dataset of short reads, long reads, assemblies, or complete genomes. A marker panel summarizes samples by the aggregate coverage, depth, and nucleotide identity of all input sequences aligned against the carefully selected target sequences. These target sequences are grouped for ease of interpretation and presented to the end user with group-level summary statistics. An [example Marker Panel result page](https://app.onecodex.com/markerpanel/public/5a6a90255a354bf5) is shown in [Figure 2](#figure-2).
+A "Marker Panel” on the [One Codex platform](https://app.onecodex.com) consists of a set of target sequences that are compared against an input dataset of short reads, long reads, assemblies, or complete genomes (in either FASTA or FASTQ format). A marker panel summarizes samples by the aggregate coverage, depth, and nucleotide identity of all input sequences aligned against the carefully selected target sequences. These target sequences are grouped for ease of interpretation and presented to the end user with group-level summary statistics. An [example Marker Panel result page](https://app.onecodex.com/markerpanel/public/5a6a90255a354bf5) is shown in [Figure 2](#figure-2).
 
 The *B. anthracis* marker panel was assembled to detect the presence of *B. anthracis* using four specific types of probes:
 
