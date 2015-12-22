@@ -39,11 +39,6 @@ affiliations:
     members:
       - *christopher-mason
       - *ebrahim-afshinnekoo
-  - name: "Yale Law School"
-    department: "Information Society Project"
-    location: "New York, New York, USA"
-    members:
-      - *christopher-mason
   - name: "Weill Cornell Medical College"
     department: "The HRH Prince Alwaleed Bin Talal Bin Abdulaziz Alsaud Institute for Computational Biomedicine"
     location: "New York, New York, USA"
