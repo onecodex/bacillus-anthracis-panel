@@ -3,9 +3,9 @@ This is a simple fork of the base PeerJ Paper Now project, that we'll try to kee
 * The `_config.yml` file is updated to use forked versions of the style guide and research article component. The latter is probably unnecessary, the former makes a few style tweaks. `_config_dev.yml` is removed.
 * `article.html` includes a few necessary extra elements in the `<head>`, e.g., a favicon, custom fonts, etc.
 * **Local editing**: Run `./serve.sh` to keep your docs updated while editing. By default, the page will be available at `http://localhost:4000/paper-now/`. Note you'll need the dependencies (`bundle install` should grab them for you)
-* **"Staging"**: By default, if you push a `gh-pages` branch, you will be able to see the article at `https://refgenomics.github.io/<REPO_NAME>`. As a consequence of this, it's a good practice to name the repo to match the ultimate intended deployment location (see below).
+* **"Staging"**: By default, if you push a `gh-pages` branch, you will be able to see the article at `https://onecodex.github.io/<REPO_NAME>`. As a consequence of this, it's a good practice to name the repo to match the ultimate intended deployment location (see below).
 * **Deployment**: Run `./sync.sh` to deploy (you'll need appropriate AWS credentials). Note that you need to edit the `baseurl` variable in `_config.yml` and `LOCATION` environment variable in `sync.sh` to match – and this will be where the article gets hosted, e.g., `LOCATION=microbiome-16s-vs-shotgun` would host the article at `https://science.onecodex.com/microbiome-16s-vs-shotgun/`
-* **Feedback and commentary**: You can comment on draft articles via Hypothes.is. Please use the `https://refgenomics.github.io/<REPO_NAME>/` link when doing so. Note that this apparently only really works in Chrome. :(
+* **Feedback and commentary**: You can comment on draft articles via Hypothes.is. Please use the `https://onecodex.github.io/<REPO_NAME>/` link when doing so. Note that this apparently only really works in Chrome. :(
  
 # Paper Now
 
