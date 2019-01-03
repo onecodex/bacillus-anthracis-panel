@@ -1,0 +1,300 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>B. anthracis Panel</title>
+  <script src="https://distill.pub/template.v2.js"></script>
+  <style><%= require("raw-loader!../static/style.css") %></style>
+</head>
+
+<body>
+
+<d-front-matter>
+  <script id="distill-front-matter" type="text/json">{
+  "title": "Detection of Bacillus anthracis using a targeted gene panel",
+  "description": "",
+  "published": "December 22, 2015",
+  "doi": "10.5281/zenodo.2530751",
+  "authors": [
+    {
+      "author": "Samuel S. Minot",
+      "authorURL": "https://www.onecodex.com",
+      "affiliation": "One Codex",
+      "affiliationURL": "https://www.onecodex.com"
+    },
+    {
+      "author": "Nick Greenfield",
+      "authorURL": "https://www.onecodex.com",
+      "affiliation": "One Codex",
+      "affiliationURL": "https://www.onecodex.com"
+    },
+    {
+      "author": "Ebrahim Afshinnekoo",
+      "authorURL": "https://scholar.google.com/citations?user=ldYPzGQAAAAJ&hl=en",
+      "affiliation": "Weill Cornell",
+      "affiliationURL": "https://scholar.google.com/citations?user=ldYPzGQAAAAJ&hl=en"
+    },
+    {
+      "author": "Christopher E. Mason",
+      "authorURL": "http://www.masonlab.net/",
+      "affiliation": "Weill Cornell",
+      "affiliationURL": "https://research.cornell.edu/researchers/christopher-e-mason"
+    }
+  ],
+  "katex": {
+    "delimiters": [
+      {
+        "left": "$",
+        "right": "$",
+        "display": false
+      },
+      {
+        "left": "$$",
+        "right": "$$",
+        "display": true
+      }
+    ]
+  }
+  }</script>
+</d-front-matter>
+
+<d-title><h1>Detection of <em>Bacillus anthracis</em> using a targeted gene panel</h1></d-title>
+
+<d-abstract>
+  <p style="font-size: 0.75em; font-color: #ccc; line-height: 1.5em; margin-bottom: 30px;">
+    <b>Abstract.</b> <em>Bacillus anthracis</em> is a spore-forming pathogen that both occurs naturally in the wild and has been used for biological warfare. The detection of <em>B. anthracis</em> in metagenomic datasets can be confounded by the presence of other species from the genus <em>Bacillus</em>, which are closely related and often found in similar environmental conditions. <em>B. anthracis</em> encodes its pathogenicity via two plasmids, pXO1 and pXO2, and is monophyletic. Given the paramount importance of high-confidence detection for this pathogen, we constructed a targeted genomic detection panel for use with both isolates and metagenomic samples. The <em>B. anthracis</em> detection panel is executed on the One Codex platform, quantifying the proportion of species-specific markers detected on the core chromosome, each virulence plasmid, as well as the presence of a canonical chromosomal SNP. Tested against a collection of dozens of public <em>Bacillus</em> isolates, this panel clearly discriminates between <em>B. anthracis</em> and other closely related <em>Bacillus</em> species. Furthermore, an in silico limit of detection study demonstrates this high-confidence detection at as low as 0.1X sequencing depth. This targeted gene panel provides a robust tool for the high-confidence detection of <em>B. anthracis</em> in metagenomic samples, while also demonstrating how the One Codex platform integrates orthogonal bioinformatic methods in order to provide a comprehensive understanding of complex microbial samples.
+  </p>
+</d-abstract>
+
+<d-article>
+  <h1>Introduction</h1>
+  <p>
+    The specific detection of pathogenic microbes is a useful application of high-throughput genomic sequencing that has generated substantial interest in the clinical, public health, and biodefense communities. Rather than focusing on a limited set of biochemical signatures, such as a surface antigen or conserved marker gene, whole genome analysis offers the potential for highly sensitive and accurate detection that stands up robustly in the face of trace-level input, unculturable target microbes, and genomic sequence divergence. However, existing tools for microbial metagenomics are typically focused on identifying the broadest possible range of organisms, potentially sacrificing computational or biological specificity for taxonomic breadth. This can often lead to several problems, including false positives, results that are more accurate at the genus level than the species level, or taxonomic assignment that uses some parts of the “core genome” but that neglect the unique biological and virulence markers of a species. This issue was recently highlighted in the case of the putative pathogen identification (<em>B. anthracis</em>) in two samples in the New York City subway system<d-cite key="Afshinnekoo2015-yw"></d-cite>, a result supported by the output of at least 3 distinct metagenomic classification tools (MetaPhlAn, SURPI, and MEGAN), but a result that lacked some of the key virulence markers<d-cite key="Afshinnekoo2015-tm"></d-cite>. Notably, the predicted presence of <em>B. anthracis</em> was not a function of depth; the result persisted and even slightly increased when taking the same sample and increasing sequencing depth from 4.5 million reads (125x125 paired-end HiSeq2500 reads) to 241.1 million reads (<a href="#figure1">Figure 1</a>). These results indicate that additional biochemical methods and/or computational tools are necessary for in-depth analysis of metagenomic samples in the case of putative pathogens, especially amid closely-related phylogenetic groups.
+  </p>
+  <p>
+    To complement these broad-based metagenomic methods, we constructed a targeted bioinformatic tool to detect <em>Bacillus</em> anthracis that takes into account the specific biology of the pathogen, including the virulence plasmids pXO1 and pXO2 and the plcR SNP that has been previously identified as being diagnostic of <em>B. anthracis</em>. The resulting “marker panel” on the One Codex platform provides applied microbiologists with a straightforward and powerful tool for the detection of <em>B. anthracis</em>, and we believe that it also demonstrates a generalizable approach for the development of easy-to-interpret targeted assays that complement exploratory metagenomic analysis. <a href="#figure1">Figure 1</a> provides a visual summary of the highly sensitive detection provided by this panel, while <a href="#figure2">Figure 2</a> shows the interface for an individual result. The design, construction, and evaluation of the panel is elaborated further in the sections that follow.
+  </p>
+
+  <figure class="subgrid" id="figure1">
+    <figcaption style="grid-column: kicker">
+      <span class="figure-number">Figure 1:</span>
+      <span>Detection of <em>B. anthracis</em> across 103 <em>Bacillus</em> isolates and metagenomic samples. Red points are <em>Bacillus anthracis</em>, blue points are other <em>Bacillus</em> species, purple points are synthetic metagenomic samples with <em>B. anthracis</em> spike-ins (0.1X &ndash; 2.0X), and orange points are 3 samples (2 sites) from the <a href="//www.pathomap.org">PathoMAP project</a>.<d-cite key="Afshinnekoo2015-yw"></d-cite>For display, values of 0 were rounded up to 0.0001. <span class="hidden-xs">Click on any point to view the underlying analysis on <a href="https://www.onecodex.com">One Codex</a>.</span>
+    </figcaption>
+    <div class="l-body">
+      <iframe src="diagrams/figure1.html" style="border: none; width: 100%; height: 700px;"></iframe>
+    </div>
+  </figure>
+
+  <h1>Methods</h1>
+  <h3>Marker Panel Construction</h3>
+  <p>
+    A “Marker Panel” on the <a href="//www.onecodex.com">One Codex platform</a> consists of a set of target sequences that are compared against an input dataset of short reads, long reads, assemblies, or complete genomes (in either FASTA or FASTQ format). A marker panel summarizes samples by the aggregate coverage, depth, and nucleotide identity of all input sequences aligned against the carefully selected target sequences. These target sequences are grouped for ease of interpretation and presented to the end user with group-level summary statistics. An <a target="_blank" href="//app.onecodex.com/markerpanel/public/5a6a90255a354bf5">example Marker Panel</a> result page is shown in <a href="#figure2">Figure 2</a>.
+  </p>
+  <p>
+    The <em>B. anthracis</em> marker panel was assembled to detect the presence of <em>B. anthracis</em> using four specific types of probes:
+  </p>
+  <ol>
+    <li><b>plcR SNP</b>: A single SNP was identified by Easterday, et al. as being ubiquitous and specific to <em>B. anthracis</em>.<d-cite key="Easterday2005-ev"></d-cite> A 31bp marker spanning that SNP was used as a target sequence and is displayed in the top panel of <a href="#figure2">Figure 2</a>.</li>
+    <li><b>Virulence plasmid markers</b>: The complete set of 50bp sequences from the pXO1 and pXO2 plasmids were compared against the One Codex Database (containing roughly 40,000 complete microbial genomes), and all non-overlapping markers specific to <em>B. anthracis</em> were used as plasmid-specific target sequences (pXO1 – n=115; pXO2 – n=112), displayed in the second and third panels in <a href="#figure2">Figure 2</a>.</li>
+    <li><b>Core genome SNPs</b>: A set of 31bp k-mers were identified by Petit et al. as being specific to the main chromosome of <em>B. anthracis</em><d-cite key="Petit2015-qy"></d-cite>, and not shared by any other <em>Bacillus</em> species. A non-overlapping set of 1,605 of these target sequences was used for the “Core Genome” panel shown in the fourth panel of <a href="#figure2">Figure 2</a>.</li>
+    <li><b>“Near neighbor control markers”</b>: A final panel presents select highly conserved markers present across <em>Bacillus</em> species. These markers <b><em>do not</em></b> indicate the presence of <em>B. anthracis</em>, but rather serve to estimate the relative depth of sequencing across all <em>Bacillus</em> species present in a sample. The resulting coverage statistics can also be used to distinguish between the genuine but low-level presence of <em>B. anthracis</em> and sequencing error in a deeply sequenced sample.</li>
+  </ol>
+
+  <figure class="subgrid" id="figure2">
+    <figcaption style="grid-column: kicker">
+      <span class="figure-number">Figure 2:</span>
+      <span>Example of <em>B. anthracis</em> Marker Panel summarizing the detection of the plcR SNP, the pXO1 and pXO2 plasmids, and the <em>B. anthracis</em> core genome. <a target="_blank" href="//app.onecodex.com/markerpanel/public/5a6a90255a354bf5">Example on the One Codex platform</a>.</span>
+    </figcaption>
+    <div class="l-body">
+      <img src="diagrams/figure2.png" />
+    </div>
+  </figure>
+
+  <h3><em>B. anthracis</em> Marker Panel on One Codex</h3>
+  <p>
+    The <em>B. anthracis</em> detection panel can be used on the One Codex platform by uploading FASTQ datasets via the GUI interface or the command line client (<a href="//docs.onecodex.com/docs/intro-getting-started">details here</a>). An example of the results page is shown in <a href="#figure2">Figure 2</a>. Please contact the authors for further guidance on the use of this tool on One Codex.
+  </p>
+
+  <h3>Marker Panel Execution</h3>
+  <p>
+    The <em>B. anthracis</em> detection panel is executed on the One Codex platform as part of an automated analysis. Each sequence in an input dataset is compared against every target sequence with a minimal exact match length of 31bp and a tolerance of up to 3 SNPs. For those markers 31bp in length, an exact match is required for detection. The platform records the number of input sequences matching each target, and presents the user with a single display that summarizes the abundance of these 1,841 markers across four categories (plcR, pXO1/pXO2, the main chromosome, and the cross-Bacillus depth controls). An example of this display is shown in <a href="#figure2">Figure 2</a>.
+  </p>
+
+  <h3>Inclusivity & Exclusivity Testing</h3>
+  <p>
+    The accuracy of the <em>B. anthracis</em> marker panel was assessed by analyzing a diverse collection of <em>B. anthracis</em> isolates available from public repositories as short-read shotgun sequencing datasets. A minimum threshold of 3X average sequencing depth was used to ensure sufficient genome coverage, and datasets were all downsampled to <=20X genome coverage to control for the contribution of low-frequency sequencing error. For each of those input datasets, we quantified the number of markers detected from each category. Those results were compared against those from a collection of non-<em>B. anthracis</em> isolates from the genus <em>Bacillus</em> that were also available from public repositories. The number of datasets analyzed from each species is shown in <a href="#table1">Table 1</a>, and the complete list of datasets is available as <a target="_blank" href="https://github.com/onecodex/bacillus-anthracis-panel/blob/gh-pages/data/accessions.tsv">Table S1</a>. <a href="#table2">Table 2</a> includes links to 3 example analyses. The results of this analysis are shown in <a href="#figure3">Figure 3</a>.
+  </p>
+
+  <figure class="subgrid" id="table1">
+    <div class="l-body">
+      <table style="display: flex; justify-content: center; border-bottom: none; margin-bottom: 20px;">
+        <tr>
+          <th>Species</th>
+          <th>Number of samples</th>
+        </tr>
+        <tr><td>Bacillus anthracis</td><td>22</td></tr>
+        <tr><td>Bacillus thuringiensis</td><td>30</td></tr>
+        <tr><td>Bacillus cereus</td><td>9</td></tr>
+        <tr><td>Bacillus mycoides</td><td>2</td></tr>
+        <tr><td>Bacillus subtilis</td><td>1</td></tr>
+      </table>
+      <figcaption style="display: flex; justify-content: center;">
+        <span class="figure-number">
+          Table 1: Number of samples analyzed, grouped by species.
+        </span>
+      </figcaption>
+    </div>
+  </figure>
+
+  <figure class="subgrid" id="table2">
+    <div class="l-body">
+      <table style="display: flex; justify-content: center; border-bottom: none; margin-bottom: 20px;">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th><em>B. anthracis</em> markers detected / total</th>
+          <th><em>B. anthracis</em> depth / <em>Bacillus</em> depth</th>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://app.onecodex.com/markerpanel/public/95b772397d254594">SRR2175367</a></td>
+          <td>WGS of Bacillus anthracis isolate BA1015 (Los Alamos National Laboratory)</td>
+          <td>1527/1605</td>
+          <td>0.51622</td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://app.onecodex.com/markerpanel/public/6b4d2231f74e4440">NYC Subway - Pelham Pkwy</a></td>
+          <td>Metagenomic sequencing of NYC Subway - 4.5M reads</td>
+          <td>1/1605</td>
+          <td>0.00009</td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://app.onecodex.com/markerpanel/public/9b78464d639843c1">NYC Subway - J Train</a></td>
+          <td>Metagenomic sequencing of NYC Subway - 3.4M reads</td>
+          <td>4/1605</td>
+          <td>0.00008</td>
+        </tr>
+      </table>
+      <figcaption style="display: flex; justify-content: center;">
+        <span class="figure-number">
+          Table 2: Sample analyses. Click the name to view in One Codex.
+        </span>
+      </figcaption>
+    </div>
+  </figure>
+
+  <figure class="subgrid" id="figure3">
+    <figcaption style="grid-column: kicker">
+      <span class="figure-number">Figure 3:</span>
+      <span>Frequency histogram showing the proportion of <em>B. anthracis</em> core genome markers detected for a collection of pure isolate samples from the genus <em>Bacillus</em>. The plcR SNP was detected in 100% of <em>B. anthracis</em> samples, and in none of the other <em>Bacillus</em> species.</span>
+    </figcaption>
+    <div class="l-body">
+      <img src="diagrams/figure3.png" />
+    </div>
+  </figure>
+
+  <h3>Limit of Detection Analysis</h3>
+  <p>
+    We executed the detection panel using in silico mixed samples with target organisms present at a range of abundances. The background for all of the in silico spike-in samples were 5 million reads from a soil sample (<a href="http://www.ncbi.nlm.nih.gov/sra/?term=SRR351473">SRR351473</a>) that was sequenced as part of the Great Prairie Soil Metagenome project (<a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA50473">PRJNA50473</a>). Six WGS datasets were spiked in at a range of abundances (n=6) from 0.1X to 2X sequencing depth. A second series of samples was created that also included 150K reads from a near neighbor (<em>B. thuringiensis</em>), for roughly 8X sequencing depth. For each of these datasets, the proportion of markers detected was calculated and plotted as a function of the spike-in level and near neighbor presence <a href="#figure6">Figure 6</a>.
+  </p>
+
+  <h1>Results</h1>
+  <h3>Inclusivity & Exclusivity Testing</h3>
+  <p>
+    For each sample, we summarized the result of the detection panel as the proportion of markers detected from the main chromosome, as well as for the plcR SNP and pXO1 and pXO2 plasmids. For the core genome, <a href="#figure3">Figure 3</a> shows a frequency histogram of the proportion of markers detected for the target organism (<em>B. anthracis</em>) and other <em>Bacillus</em> speices. The lowest proportion of core genome markers detected in a <em>B. anthracis</em> dataset was 65.2%, and the highest proportion of core genome markers detected in the exclusion dataset was 2.5% (for SRR2157174). The plcR SNP was detected in 100% of all <em>B. anthracis</em> isolates and in none of the other <em>Bacillus</em> isolates. The pXO1/pXO2 virulence plasmids were found to varying degrees in these <em>B. anthracis</em> samples (<a href="#figure4">Figure 4</a> and <a href="#figure5">Figure 5</a>), consistent with both genomic heterogeneity in these mobile elements, as well as a number of <em>B. anthracis</em> isolates in the public repositories that entirely lack those plasmids.
+  </p>
+
+  <figure class="subgrid" id="figure4">
+    <figcaption style="grid-column: kicker">
+      <span class="figure-number">Figure 4:</span>
+      <span>Frequency histogram showing the proportion of <em>B. anthracis</em> markers on the pXO1 virulence plasmid detected for a collection of pure isolate samples from the genus <em>Bacillus</em>.</span>
+    </figcaption>
+    <div class="l-body">
+      <img src="diagrams/figure4.png" />
+    </div>
+  </figure>
+
+  <figure class="subgrid" id="figure5">
+    <figcaption style="grid-column: kicker">
+      <span class="figure-number">Figure 5:</span>
+      <span>Frequency histogram showing the proportion of <em>B. anthracis</em> markers on the pXO2 virulence plasmid detected for a collection of pure isolate samples from the genus <em>Bacillus</em>.</span>
+    </figcaption>
+    <div class="l-body">
+      <img src="diagrams/figure5.png" />
+    </div>
+  </figure>
+
+  <h3>Limit of Detection Analysis</h3>
+  <p>
+    Analysis of in silico mixed samples containing <em>B. anthracis</em> or other <em>Bacillus</em> at a range of low abundances is shown in <a href="#figure6">Figure 6</a>. The proportion of detected markers increases roughly linearly with the amount of target genome coverage in the input dataset. The presence of a near neighbor (<em>B. thuringiensis</em>) at a high abundance (~10X), does not impact the proportion of <em>B. anthracis</em> markers detected. The plcR SNP was detected in 33.3% of samples with a spike-in level of 0.1X and above, 50% of samples at 0.75X, and 83.3% of samples at 2X spike-in. This rate of detection is consistent with the expected distribution of random sampling across the core genome. As <a href="#figure6">Figure 6</a> demonstrates, these detection rates are robust to the presence of a near neighbor, even when the spiked in <em>B. thuringiensis</em> is ~100X more abundant than the target <em>B. anthracis</em>. <a href="#figure7">Figure 7</a> shows the detection of <em>B. anthracis</em> scaled to the total abundance of <em>Bacillus</em> species in these synthetic spike-in samples. These data show that even at 0.1X spike-in, when the near neighbor is present in ~100-fold excess of <em>B. anthracis</em>, the proportion of estimated sequencing depth for <em>B. anthracis</em> compared to all <em>Bacillus</em> ranges from 0.005-0.008, substantially above the level expected due to sequencing error.
+  </p>
+
+  <figure class="subgrid" id="figure6">
+    <div class="l-body">
+      <img src="diagrams/figure6.png" />
+      <figcaption>
+        <span class="figure-number">Figure 6:</span>
+        <span>Boxplot showing the proportion of <em>B. anthracis</em> core genome markers detected for a collection of metagenomic samples containing <em>B. anthracis</em> at a variety of spike-in levels. These synthetic datasets were constructed on a background on 5M soil reads (<a href="http://www.ncbi.nlm.nih.gov/sra/?term=SRR351473">SRR351473</a>). Half of the datasets contain 150K reads (~8X sequencing depth) from a near neighbor (<em>B. thuringiensis</em>), which does not impact the proportion of <em>B. anthracis</em> markers detected.</span>
+      </figcaption>
+    </div>
+  </figure>
+
+  <figure class="subgrid" id="figure7">
+    <div class="l-body">
+      <img src="diagrams/figure7.png" />
+      <figcaption>
+      <span class="figure-number">Figure 7:</span>
+      <span>Boxplot showing the proportion of <em>B. anthracis</em> sequencing depth divided by the depth at conserved <em>Bacillus</em> markers for a collection of metagenomic samples containing <em>B. anthracis</em> at a variety of spike-in levels. These synthetic datasets are the same as those depicted in <a href="#figure6">Figure 6</a>. The amount of spiked-in near neighbor remains constant over this series of samples (150K reads). In the absence of the near neighbor (bottom panel) the proportion of <em>B. anthracis</em> / all <em>Bacillus</em> remains relatively constant, across the range of spike-in amounts. In the presence of the near neighbor (top panel), this proportion of <em>B. anthracis</em> / all <em>Bacillus</em> increases with the amount of <em>B. anthracis</em> added to the sample. At the lowest level of <em>B. anthracis</em> spike-in (0.1X), the proportion of estimated sequencing depth for <em>B. anthracis</em> compared to all <em>Bacillus</em> in the samples ranges from 0.005–0.008, much above the rate expected due to sequencing error. Note that the vertical axis is not shared between the two panels in this figure.</span>
+    </figcaption>
+    </div>
+  </figure>
+
+  <h1>Discussion</h1>
+  <p>
+    The extreme virulence and environmental stability of <em>Bacillus anthracis</em> requires high-confidence assays that simultaneously enable trace detection and are robust to reporting alarming false positives. Moreover, the specific biology of <em>B. anthracis</em> and other <em>Bacillus</em> species requires an assay that independently characterizes both the core genome and virulence plasmids in the context of complex metagenomic samples. Indeed, <em>Bacillus cereus</em> isolates have been recently found containing the pXO1 and pXO2 virulence plasmids and causing Anthrax-like disease.<d-cite key="Klee2010-ya"></d-cite>
+  </p>
+  <p>
+    High throughput sequencing offers a promising foundation for such an assay, but the inherent scale and complexity of the resulting datasets tends to confound “one size fits all” analytic approaches (doubly so for metagenomic samples). Indeed, this inquiry was motivated by an alarming false positive arising from the broad application of exploratory metagenomic tools.
+  </p>
+  <p>
+    Here, we present a targeted assay for the detection of <em>Bacillus anthracis</em> which is specifically designed with the biology of the pathogen in mind and complements, rather than replaces, unbiased metagenomic analysis. Initiated automatically or at the behest of the end user, the assay detects the diagnostic plcR SNP, the pXO1/pXO2 virulence plasmids, the core <em>B. anthracis</em> genome, and a set of sequences conserved broadly across <em>Bacillus</em> species.
+  </p>
+  <p>
+    We tested the detection panel against a diverse set of previously-sequenced <em>Bacillus</em> species – demonstrating its sensitivity across a range of <em>B. anthracis</em> strains, sequencing platforms, sequencing depths, and the presence or absence of confounding near neighbor species. Indeed, all of the 23 analyzed <em>B. anthracis</em> isolates contained 65.2% or more of the core genome markers, while all of the 42 analyzed other <em>Bacillus</em> isolates contained 2.5% or lower core genome markers (<a href="#figure3">Figure 3</a>). Moreover, the limit-of-detection analysis shows that this assay was extremely robust to the presence of a near neighbor <em>Bacillus</em> (<a href="#figure4">Figure 4</a>).
+  </p>
+  <p>
+    This assay directly addresses the potentially confounding scenario in which a small number of <em>B. anthracis</em> SNPs are present in a deeply-sequenced metagenomic sample. Those sequences may be present due to trace levels of the pathogen, but they may alternately be caused by a large number of reads from another <em>Bacillus</em> species and a low level of sequencing instrument error. To distinguish between these possibilities, we present the level of evidence for <em>B. anthracis</em> in the context of the relative abndance of all <em>Bacillus</em> species in a sample. This allows an end user to directly compare the relative abundance of <em>B. anthracis</em> to other <em>Bacillus</em> species and more accurately judge whether a given sample merits concern. We also believe that this panel offers a model for the development of easy-to-interpret sequencing-backed assays that serve the needs of applied end users.
+  </p>
+
+</d-article>
+
+
+
+<d-appendix>
+  <h3>Acknowledgments</h3>
+  <p>
+    We’re grateful to all those who provided feedback and input on this project, and especially to Tim Read’s lab, whose <a href="//read-lab-confederation.github.io/nyc-subway-anthrax-study/">initial work</a> provided a foundation for this panel.
+  </p>
+  <p>
+    This article was initially published in December 2015 using the <a href="https://github.com/PeerJ/paper-now">PeerJ PaperNow</a> template. It was ported to the <a href="https://github.com/distillpub/template">Distill</a> template in January 2019.
+  </p>
+
+  <h3>Author Contributions</h3>
+  <p>
+    <b>Methodology:</b> Samuel S. Minot, Christopher E. Mason, Nick Greenfield, Ebrahim Afshinnekoo
+  </p>
+  <p>
+    <b>Software:</b> Samuel S. Minot, Nick Greenfield
+  </p>
+  <p>
+    <b>Writing:</b> Samuel S. Minot, Christopher E. Mason, Nick Greenfield, Ebrahim Afshinnekoo
+  </p>
+
+  <d-footnote-list></d-footnote-list>
+  <d-citation-list></d-citation-list>
+</d-appendix>
+
+<!-- bibliography will be inlined during Distill pipeline's pre-rendering -->
+<d-bibliography src="bibliography.bib"></d-bibliography>
+
+</body>

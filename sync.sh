@@ -1,4 +1,4 @@
 set -e
-LOCATION=bacillus-anthracis-panel
-jekyll build
-cd _site && s3cmd sync --rexclude "^\." --rexclude "private/*" --cf-invalidate --cf-invalidate-default-index ./* . s3://science.onecodex.com/$LOCATION/
+npm run build
+aws s3 sync public/ s3://science.onecodex.com/bacillus-anthracis-panel/
+aws cloudfront create-invalidation --distribution-id EADCJGA0D28CG --paths "/bacillus-anthracis-panel/*"
